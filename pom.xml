@@ -1,0 +1,621 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>uk.ac.ebi.fg.biosd</groupId>
+  <artifactId>biosd_common</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>BioSD Common Elements</name>
+  <url>http://www.ebi.ac.uk/biosamples</url>
+
+	<description>
+		This is a container of common configuration elements (e.g., databases) and building elements (e.g., logging), which 
+		are used BioSD-related projects (www.ebi.ac.uk/biosamples).
+		
+		If you're creating a new Maven project about BioSD, which has to use these elements, you're strongly recommended 
+		to make it dependent on this POM, via the parent directive (see below).
+	</description>
+
+	<!-- 
+	  Make your BioSD project depending on this POM by means of the following in your POM. You don't need to
+	  have our parent POM downloaded in your directory (Maven does it automatically) and we make an effort to 
+	  change the version of this POM as little as possible, so that you won't have to make updates either. 
+	  
+	  Moreover, let us know if you want such updates to be made automatically in your project, when we change the main 
+	  POM, we have a Bamboo plan to do that. Alternatively, you may want to setup a similar plan 
+	  (http://marcobrandizi.info/mysite/node/146, dependencies update).
+	  
+	  Of course, your project doesn't need at all to have the same version that we have here for this POM.
+	-->
+	
+	<!-- This goes on the top of your POM
+	<parent>
+	  <groupId>uk.ac.ebi.fg</groupId>
+	  <artifactId>biosd_common</artifactId>
+	  <version>0.0.1-SNAPSHOT</version>
+	</parent> 
+	-->
+
+	<!-- This goes in the repositories section
+		<repository>
+			<id>ebi-repo</id>
+			<name>EBI repo</name>
+			<url>http://www.ebi.ac.uk/~maven/m2repo</url>
+		</repository>
+		
+		<repository>
+			<id>ebi-repo-snapshots</id>
+			<name>EBI Repo Snapshots</name>
+			<url>http://www.ebi.ac.uk/~maven/m2repo_snapshots</url>
+			<snapshots><enabled>true</enabled></snapshots>
+		</repository> 
+	-->
+
+  <properties>
+		<h2.version>1.3.168</h2.version>
+		<p6spy.version>2.0-SNAPSHOT</p6spy.version>
+		<hsql.version>2.2.9</hsql.version>
+		<oracle.version>11.2.0.3</oracle.version>
+		
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+
+	<dependencyManagement>
+	
+		<dependencies>
+
+			<!-- We use the common interface for logging. This is able to wrap other loggers you might be using transparently 
+			(e.g., log4), which given a number of advantages (e.g., common configuration files). You need to complete this 
+			with interceptors and exclusions, 
+			see below -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.6.6</version>
+			</dependency>
+	
+			<!-- We use this logger by default, you should either setup it or use another one (e.g., the Log4J wrapper below) -->
+	
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>0.9.29</version>
+			</dependency>
+	
+			<!-- Intercepts log4j and sends it to logback, this usually requires that you override existing log4j 
+			dependency with scope = provided -->		
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>log4j-over-slf4j</artifactId>
+				<version>1.6.6</version>
+			</dependency>
+			
+			<!-- The same for Java Common Logging -->
+			<dependency>
+			  <groupId>org.slf4j</groupId>
+			  <artifactId>jcl-over-slf4j</artifactId>
+			  <version>1.6.6</version>
+			</dependency>		
+	
+			<!-- Sometimes you may want this in the compile scope, not test, and hence it's put here -->		
+		  <dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.10</version>
+		  </dependency>
+		
+			<dependency>
+			   <groupId>com.google.guava</groupId>
+			   <artifactId>guava</artifactId>
+			   <version>14.0</version>
+			</dependency>
+	
+			<dependency>
+			   <groupId>org.hibernate</groupId>
+			   <artifactId>hibernate-entitymanager</artifactId>
+			   <version>4.2.0.Final</version>
+			</dependency>
+			
+			<dependency>
+			   <groupId>org.hibernate</groupId>
+			   <artifactId>hibernate-validator</artifactId>
+			   <version>4.3.1.Final</version>
+			</dependency>
+					
+			<!-- Don't use  -->			
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>2.6</version>
+			</dependency>
+	    
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.3</version>		
+			</dependency>
+	          		
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils-core</artifactId>
+				<version>1.8.3</version>
+			</dependency>
+	          		
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>1.8.3</version>
+			</dependency>
+	
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.4</version>
+			</dependency>				            		
+							  
+			<dependency>
+				<groupId>uk.ac.ebi</groupId>
+				<artifactId>jutils</artifactId>
+				<version>4.0</version>
+			</dependency>
+	
+			<dependency>
+			 <groupId>org.springframework</groupId>
+			 <artifactId>spring-context</artifactId>
+			 <version>3.2.0.RELEASE</version>
+			</dependency> 
+	
+			<!-- Allows you to assert which exception should be triggered by a method invocation and helps test writing 
+					 a lot -->
+			<dependency>
+			  <groupId>com.googlecode.catch-exception</groupId>
+			  <artifactId>catch-exception</artifactId>
+			  <version>1.0.4</version>
+			</dependency>
+	
+			<!-- A great library that simplify the management of time entities -->
+			<dependency>
+				<groupId>joda-time</groupId>
+				<artifactId>joda-time</artifactId>
+				<version>2.2</version>
+			</dependency>
+
+			<!-- We usually use this for processing command line options -->				  
+			<dependency>
+				<groupId>commons-cli</groupId>
+				<artifactId>commons-cli</artifactId>
+				<version>1.2</version>
+			</dependency>
+				  
+		</dependencies>
+	
+	</dependencyManagement>  
+
+
+  
+  <distributionManagement>
+
+	  <repository>
+		  <id>ebi-repo-old</id>
+		  <name>EBI Repository</name>
+		  <url>scp://ebi-001.ebi.ac.uk/homes/maven/public_html/m2repo</url>
+	  </repository>
+		
+	  <snapshotRepository>
+		  <uniqueVersion>false</uniqueVersion>
+		  <id>ebi-repo-old-snapshots</id>
+		  <name>EBI Snapshots Repository</name>
+		  <url>scp://ebi-001.ebi.ac.uk/homes/maven/public_html/m2repo_snapshots</url>
+	  </snapshotRepository>
+		
+  </distributionManagement>	
+
+
+	<repositories>
+
+	  <repository>
+		  <id>ebi-repo-old</id>
+		  <name>EBI Repository</name>
+		  <url>scp://ebi-001.ebi.ac.uk/homes/maven/public_html/m2repo</url>
+	  </repository>
+		
+	  <repository>
+		  <id>ebi-repo-old-snapshots</id>
+		  <name>EBI Snapshots Repository</name>
+		  <url>scp://ebi-001.ebi.ac.uk/homes/maven/public_html/m2repo_snapshots</url>
+		  <snapshots><enabled>true</enabled></snapshots>
+	  </repository>
+
+		
+		<!-- Has the Oracle driver, which cannot be published outside, for copyright reasons -->		
+		<repository>
+			<id>coconut.ebi.ac.uk-snapshots</id>
+			<name>Coconut Snapshot Repository</name>
+			<url>http://coconut.ebi.ac.uk:8081/artifactory/local-repo/</url>
+			<snapshots>
+			  <enabled>true</enabled>
+			</snapshots>
+		</repository>
+			
+	</repositories>
+	
+	<scm>
+		<developerConnection>scm:git:git@github.com:EBIBioSamples/biosd_common.git</developerConnection>
+	</scm>	
+
+
+	<build>
+	
+		<pluginManagement>
+			<plugins>
+			
+	      <plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+		      <configuration>
+		        <source>1.7</source>
+		        <target>1.7</target>
+		        <encoding>utf-8</encoding>
+		      </configuration>
+		    </plugin>
+		    
+		    <plugin>
+			    <artifactId>maven-source-plugin</artifactId>
+			    <executions>
+			      <execution>
+			        <id>attach-source</id>
+			        <goals>
+			          <goal>jar</goal>
+			        </goals>
+			      </execution>
+			    </executions>
+		    </plugin>
+		    	
+	
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration>
+						<properties>
+							<property>
+								<!-- Prints out spaces and test name before/after every test method 
+									and automatically -->
+								<name>listener</name>
+								<value>uk.ac.ebi.utils.test.junit.TestOutputDecorator</value>
+							</property>
+						</properties>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+		
+		<extensions>
+			<!-- Needed for scp-based deployment -->
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.2</version>
+			</extension>
+		</extensions>
+	
+	</build>
+
+
+	<profiles>
+	
+		<!-- 
+	    The test.* profiles set up properties like test.*, these are used in test configuration files, (e.g.,
+	    src/test/resources/hibernate.properties). These is done to allow you to define similar files in your Maven project, 
+	    but without the test.* prefix. In other word, you can play with profiles and keep separated certain properties 
+	    depending on a real environment (e.g., production, staging) from test properties like the ones defined here.
+	    
+	    See our documentation (https://github.com/EBIBioSamples/myequivalents/wiki/Building-the-MyEquivalents-Software, 
+	    TODO: this is a provisional link about a very similar project) for further information on how profiles work in 
+	    BioSD and how you should arrange your project to use them. 
+	  -->
+	
+		<profile>
+			<id>test.h2</id>
+			<activation><activeByDefault>true</activeByDefault></activation>
+			<properties>
+				<test.jdbc.username>sa</test.jdbc.username>
+				<test.jdbc.password />
+				<test.jdbc.url>jdbc:h2:mem:testdb</test.jdbc.url>
+				<test.jdbc.driverClassName>org.h2.Driver</test.jdbc.driverClassName>
+				<test.hibernate.dialect>org.hibernate.dialect.H2Dialect</test.hibernate.dialect>
+				<test.hibernate.hbm2ddl.auto>update</test.hibernate.hbm2ddl.auto>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<version>${h2.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
+			<id>test.h2_file</id>
+			<properties>
+				<test.jdbc.username>sa</test.jdbc.username>
+				<test.jdbc.password />
+				<test.jdbc.url>jdbc:h2:target/database/testdb</test.jdbc.url>
+				<test.jdbc.driverClassName>org.h2.Driver</test.jdbc.driverClassName>
+				<test.hibernate.dialect>org.hibernate.dialect.H2Dialect</test.hibernate.dialect>
+				<test.hibernate.hbm2ddl.auto>create</test.hibernate.hbm2ddl.auto>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<version>${h2.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		
+		
+		
+		<profile>
+			<id>h2_file</id>
+			<properties>
+				<jdbc.username>sa</jdbc.username>
+				<jdbc.password />
+				<jdbc.url>jdbc:h2:target/database/testdb</jdbc.url>
+				<!-- You need java -cp h2*.jar org.h2.tools.Server for this (-? for options) 
+				<jdbc.url>jdbc:h2:tcp://localhost/~/testdb</jdbc.url -->
+				<jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
+				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<version>${h2.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		
+		
+		
+				
+		<!-- 
+		  This wraps the same settings in h2_file with P6SPY, a filter driver that will log all the SQL statements to
+		  target/spy.log
+		  
+		  You need to have a P6SPY property files in your classpath for this to work 
+		  (see projects like http://github.com/EBIBioSamples/biosd_model_load for details)
+		  
+		  WARNING: we've a few tests not working with this configuration. It seems the old HSQL driver, mentioned in 
+		  spy.properties, is used, instead of the one specified here.
+		-->
+		<profile>
+			<id>test.p6spy.h2_file</id>
+			<properties>
+				<test.jdbc.username>sa</test.jdbc.username>
+				<test.jdbc.password />
+				<test.jdbc.url>jdbc:h2:target/database/testdb</test.jdbc.url>
+				<test.jdbc.driverClassName>com.p6spy.engine.spy.P6SpyDriver</test.jdbc.driverClassName>
+				<test.jdbc.spy.driverClassName>org.h2.Driver</test.jdbc.spy.driverClassName>
+				<test.hibernate.dialect>org.hibernate.dialect.H2Dialect</test.hibernate.dialect>
+				<test.hibernate.hbm2ddl.auto>create</test.hibernate.hbm2ddl.auto>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>p6spy</groupId>
+					<artifactId>p6spy</artifactId>
+					<version>${p6spy.version}</version>
+				</dependency>			
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<version>${h2.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
+
+
+
+		<!-- WARNING! DO NOT EXPECT THE DEV DB TO BE STABLE, data and/or schema will be deleted often as part of the testing
+				 process. PLEASE NOTIFY ALL WHO MAY BE CONCERNED BEFORE WIPING THE DEV DB OUT -->
+		<profile>
+			<id>test.oracle_dev</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<test.jdbc.username>biosddev</test.jdbc.username>
+				<test.jdbc.password>b10sdd3v</test.jdbc.password>
+				<test.jdbc.url>jdbc:oracle:thin:@ora-vm-031.ebi.ac.uk:1531:biosddev</test.jdbc.url>
+				<test.jdbc.driverClassName>oracle.jdbc.driver.OracleDriver</test.jdbc.driverClassName>
+				<test.hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</test.hibernate.dialect>
+				<test.hibernate.hbm2ddl.auto />
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.oracle</groupId>
+					<artifactId>ojdbc6</artifactId>
+					<version>${oracle.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		
+		
+		<profile>
+			<id>test.oracle_test</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<test.jdbc.username>biosdtst</test.jdbc.username>
+				<test.jdbc.password>b10sdt5t</test.jdbc.password>
+				<test.jdbc.url>jdbc:oracle:thin:@ora-vm-031.ebi.ac.uk:1531:biosdtst</test.jdbc.url>
+				<test.jdbc.driverClassName>oracle.jdbc.driver.OracleDriver</test.jdbc.driverClassName>
+				<test.hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</test.hibernate.dialect>
+				<test.hibernate.hbm2ddl.auto>update</test.hibernate.hbm2ddl.auto>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.oracle</groupId>
+					<artifactId>ojdbc6</artifactId>
+					<version>${oracle.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>		
+
+		
+		<profile>
+			<id>test.oracle_prod</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<test.jdbc.username>biosd</test.jdbc.username>
+				<test.jdbc.password>b10sdp40</test.jdbc.password>
+				<test.jdbc.url>jdbc:oracle:thin:@ora-vm-023.ebi.ac.uk:1531:BIOSDPRO</test.jdbc.url>
+				<test.jdbc.driverClassName>oracle.jdbc.driver.OracleDriver</test.jdbc.driverClassName>
+				<test.hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</test.hibernate.dialect>
+				<test.hibernate.hbm2ddl.auto />
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.oracle</groupId>
+					<artifactId>ojdbc6</artifactId>
+					<version>${oracle.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>	
+
+		
+		<profile>
+			<id>oracle_test</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<jdbc.username>biosdtst</jdbc.username>
+				<jdbc.password>b10sdt5t</jdbc.password>
+				<jdbc.url>jdbc:oracle:thin:@ora-vm-031.ebi.ac.uk:1531:biosdtst</jdbc.url>
+				<jdbc.driverClassName>oracle.jdbc.driver.OracleDriver</jdbc.driverClassName>
+				<hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
+				<hibernate.hbm2ddl.auto />
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.oracle</groupId>
+					<artifactId>ojdbc6</artifactId>
+					<version>${oracle.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
+
+
+		<profile>
+			<id>oracle_prod</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<jdbc.username>biosd</jdbc.username>
+				<jdbc.password>b10sdp40</jdbc.password>
+				<jdbc.url>jdbc:oracle:thin:@ora-vm-023.ebi.ac.uk:1531:BIOSDPRO</jdbc.url>
+				<jdbc.driverClassName>oracle.jdbc.driver.OracleDriver</jdbc.driverClassName>
+				<hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
+				<hibernate.hbm2ddl.auto />
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.oracle</groupId>
+					<artifactId>ojdbc6</artifactId>
+					<version>${oracle.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
+
+		<!-- WARNING! DO NOT EXPECT THE DEV DB TO BE STABLE, data and/or schema will be deleted often as part of the testing
+				 process. PLEASE NOTIFY ALL WHO MAY BE CONCERNED BEFORE WIPING THE DEV DB OUT -->
+		<profile>
+			<id>oracle_dev</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<jdbc.username>biosddev</jdbc.username>
+				<jdbc.password>b10sdd3v</jdbc.password>
+				<jdbc.url>jdbc:oracle:thin:@ora-vm-031.ebi.ac.uk:1531:biosddev</jdbc.url>
+				<jdbc.driverClassName>oracle.jdbc.driver.OracleDriver</jdbc.driverClassName>
+				<hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
+				<hibernate.hbm2ddl.auto />
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.oracle</groupId>
+					<artifactId>ojdbc6</artifactId>
+					<version>${oracle.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
+
+		<!-- Makes a binary with the P6SPY wrapper backed by Oracle Dev -->
+		<profile>
+			<id>p6spy.oracle_dev</id>
+			<properties>
+				<jdbc.username>biosddev</jdbc.username>
+				<jdbc.password>b10sdd3v</jdbc.password>
+				<jdbc.url>jdbc:oracle:thin:@ora-vm-031.ebi.ac.uk:1531:biosddev</jdbc.url>
+				<jdbc.driverClassName>com.p6spy.engine.spy.P6SpyDriver</jdbc.driverClassName>
+				<jdbc.spy.driverClassName>oracle.jdbc.driver.OracleDriver</jdbc.spy.driverClassName>
+				<hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
+				<hibernate.hbm2ddl.auto />
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>p6spy</groupId>
+					<artifactId>p6spy</artifactId>
+					<version>${p6spy.version}</version>
+				</dependency>			
+				<dependency>
+					<groupId>org.hsqldb</groupId>
+					<artifactId>hsqldb</artifactId>
+					<version>${hsql.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>com.oracle</groupId>
+					<artifactId>ojdbc6</artifactId>
+					<version>${oracle.version}</version>
+				</dependency>				
+			</dependencies>
+		</profile>
+
+
+
+		<profile>
+			<id>test.mysql</id>
+			<properties>
+				<test.jdbc.username>biosd</test.jdbc.username>
+				<test.jdbc.password>biosd</test.jdbc.password>
+				<test.jdbc.url>jdbc:mysql://localhost/biosd_test</test.jdbc.url>
+				<test.jdbc.driverClassName>com.mysql.jdbc.Driver</test.jdbc.driverClassName>
+				<test.hibernate.dialect>org.hibernate.dialect.MySQLDialect</test.hibernate.dialect>
+				<test.hibernate.hbm2ddl.auto>update</test.hibernate.hbm2ddl.auto>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>mysql</groupId>
+					<artifactId>mysql-connector-java</artifactId>
+					<version>5.1.20</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
+	</profiles>    
+
+</project>
