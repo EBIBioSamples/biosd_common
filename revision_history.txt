@@ -1,2 +1,7 @@
-1.0 
+
+1.0.3 
   - First release, created from the rearrangement of existing packages
+
+1.0.2 - 1.0
+  - Fake releases, we needed to create these, due to tests we needed to run with Bamboo (and difficulty in removing 
+    bad releases, which were actually all identical to 1.0.3).
