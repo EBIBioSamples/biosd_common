@@ -3,7 +3,7 @@
 
   <groupId>uk.ac.ebi.fg.biosd</groupId>
   <artifactId>biosd_common</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>BioSD Common Elements</name>
