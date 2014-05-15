@@ -575,7 +575,7 @@
 				<activeByDefault>false</activeByDefault>
 			</activation>
 			<properties>
-				<jdbc.username>biosddev</jdbc.username>
+				<jdbc.username>ncbi</jdbc.username>
 				<jdbc.password>nc31t5t</jdbc.password>
 				<jdbc.url>jdbc:oracle:thin:@ora-vm-031.ebi.ac.uk:1531:biosdtst</jdbc.url>
 				<jdbc.driverClassName>${oracle.jdbc.driverClassName}</jdbc.driverClassName>
