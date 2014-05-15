@@ -1,4 +1,8 @@
-
+1.0.4-SNAPSHOT
+  - NCBI and SPINE profiles added
+  - Oracle parameters moved to common POM properties, to avoud duplication
+  - jutils 4.1 dependency upgrade
+  
 1.0.3 
   - First release, created from the rearrangement of existing packages
 
