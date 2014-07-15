@@ -3,7 +3,7 @@
   
 1.1
   - NCBI and SPINE profiles added
-  - Oracle parameters moved to common POM properties, to avoud duplication
+  - Oracle parameters moved to common POM properties, to avoid duplication
   - jutils 4.1 dependency upgrade
   
 1.0.3 
