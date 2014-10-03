@@ -1,5 +1,8 @@
-1.1.1-SNAPSHOT
+1.2.1-SNAPSHOT
   - Just started 
+
+1.2
+  - jutils updated to 4.2
   
 1.1
   - NCBI and SPINE profiles added
