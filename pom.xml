@@ -57,11 +57,11 @@
 		<p6spy.version>2.0.2</p6spy.version>
 		<hsql.version>2.2.9</hsql.version>
 
+		<oracle.groupId>com.oracle</oracle.groupId>
+		<oracle.artifactId>ojdbc6</oracle.artifactId>
   	<oracle.version>11.2.0.3.0</oracle.version>
 		<oracle.jdbc.driverClassName>oracle.jdbc.driver.OracleDriver</oracle.jdbc.driverClassName>
 		<oracle.hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</oracle.hibernate.dialect>
-		<oracle.groupId>com.oracle</oracle.groupId>
-		<oracle.artifactId>ojdbc6</oracle.artifactId>
 		
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -120,6 +120,12 @@
 			</dependency>
 	
 			<dependency>
+		  	<groupId>org.hibernate</groupId>
+		  	<artifactId>hibernate-core</artifactId>
+		  	<version>4.2.0.Final</version>
+			</dependency>
+	
+			<dependency>
 			   <groupId>org.hibernate</groupId>
 			   <artifactId>hibernate-entitymanager</artifactId>
 			   <version>4.2.0.Final</version>
@@ -131,7 +137,13 @@
 			   <version>4.3.1.Final</version>
 			</dependency>
 					
-			<!-- Don't use  -->			
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-c3p0</artifactId>
+			   <version>4.2.0.Final</version>
+			</dependency>
+					
+			<!-- Try to avoid to use this, lang3 is better  -->			
 			<dependency>
 				<groupId>commons-lang</groupId>
 				<artifactId>commons-lang</artifactId>
@@ -165,7 +177,7 @@
 			<dependency>
 				<groupId>uk.ac.ebi</groupId>
 				<artifactId>jutils</artifactId>
-				<version>4.2</version>
+				<version>4.2.1-SNAPSHOT</version>
 			</dependency>
 	
 			<dependency>
@@ -640,6 +652,29 @@
 					<artifactId>${oracle.artifactId}</artifactId>
 					<version>${oracle.version}</version>
 				</dependency>				
+			</dependencies>
+		</profile>
+
+		<!-- Sort of personal database, I use for testing significan changes during development -->
+		<profile>
+			<id>oracle_brandizi</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<jdbc.username>brandizi</jdbc.username>
+				<jdbc.password>brandizi</jdbc.password>
+				<jdbc.url>jdbc:oracle:thin:@ora-vm-031.ebi.ac.uk:1531:biosdtst</jdbc.url>
+				<jdbc.driverClassName>${oracle.jdbc.driverClassName}</jdbc.driverClassName>
+				<hibernate.dialect>${oracle.hibernate.dialect}</hibernate.dialect>
+				<hibernate.hbm2ddl.auto />
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>${oracle.groupId}</groupId>
+					<artifactId>${oracle.artifactId}</artifactId>
+					<version>${oracle.version}</version>
+				</dependency>
 			</dependencies>
 		</profile>
 
