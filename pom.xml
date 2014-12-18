@@ -663,7 +663,7 @@
 			</dependencies>
 		</profile>
 
-		<!-- Sort of personal database, I use for testing significan changes during development -->
+		<!-- Sort of personal database, I use for testing significant changes during development -->
 		<profile>
 			<id>oracle_brandizi</id>
 			<activation>

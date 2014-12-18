@@ -1,5 +1,7 @@
 1.2.1-SNAPSHOT
-  - Just started 
+  - Hibernate upgraded to 4.3.6.Final
+  - More Oracle profiles added 
+  - Fluxion dependency's repo changed
 
 1.2
   - jutils updated to 4.2
