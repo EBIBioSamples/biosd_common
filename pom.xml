@@ -59,7 +59,7 @@
 
 		<oracle.groupId>com.oracle</oracle.groupId>
 		<oracle.artifactId>ojdbc6</oracle.artifactId>
-  	<oracle.version>11.2.0.3.0</oracle.version>
+  	<oracle.version>11.2.0.3</oracle.version>
 		<oracle.jdbc.driverClassName>oracle.jdbc.driver.OracleDriver</oracle.jdbc.driverClassName>
 		<oracle.hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</oracle.hibernate.dialect>
 		
