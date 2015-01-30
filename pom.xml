@@ -236,6 +236,19 @@
 
 	<repositories>
 
+		<repository>
+			<id>ebi-repo</id>
+			<name>EBI repo</name>
+			<url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-repo</url>
+		</repository>
+
+		<repository>
+			<id>ebi-repo-nexus-snapshots</id>
+			<name>EBI repo</name>
+			<url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-snapshots</url>
+		  <snapshots><enabled>true</enabled></snapshots>
+		</repository>
+
 	  <repository>
 		  <id>ebi-repo-old</id>
 		  <name>EBI Repository</name>
