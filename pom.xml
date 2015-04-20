@@ -180,7 +180,7 @@
 			<dependency>
 				<groupId>uk.ac.ebi</groupId>
 				<artifactId>jutils</artifactId>
-				<version>4.3</version>
+				<version>4.3.1-SNAPSHOT</version>
 			</dependency>
 		
 			<dependency>
@@ -370,7 +370,7 @@
 			<properties>
 				<test.jdbc.username>sa</test.jdbc.username>
 				<test.jdbc.password />
-				<test.jdbc.url>jdbc:h2:mem:testdb</test.jdbc.url>
+				<test.jdbc.url>jdbc:h2:mem:testdb;MVCC=true</test.jdbc.url>
 				<test.jdbc.driverClassName>org.h2.Driver</test.jdbc.driverClassName>
 				<test.hibernate.dialect>org.hibernate.dialect.H2Dialect</test.hibernate.dialect>
 				<test.hibernate.hbm2ddl.auto>update</test.hibernate.hbm2ddl.auto>
@@ -389,7 +389,7 @@
 			<properties>
 				<test.jdbc.username>sa</test.jdbc.username>
 				<test.jdbc.password />
-				<test.jdbc.url>jdbc:h2:target/database/testdb</test.jdbc.url>
+				<test.jdbc.url>jdbc:h2:target/database/testdb;MVCC=true</test.jdbc.url>
 				<test.jdbc.driverClassName>org.h2.Driver</test.jdbc.driverClassName>
 				<test.hibernate.dialect>org.hibernate.dialect.H2Dialect</test.hibernate.dialect>
 				<test.hibernate.hbm2ddl.auto>create</test.hibernate.hbm2ddl.auto>
@@ -403,6 +403,66 @@
 			</dependencies>
 		</profile>
 		
+		<profile>
+			<id>test.h2_server</id>
+			<properties>
+				<test.jdbc.username>sa</test.jdbc.username>
+				<test.jdbc.password />
+				<test.jdbc.url>jdbc:h2:tcp://localhost:9092/testdb;MVCC=true</test.jdbc.url>
+				<test.jdbc.driverClassName>org.h2.Driver</test.jdbc.driverClassName>
+				<test.hibernate.dialect>org.hibernate.dialect.H2Dialect</test.hibernate.dialect>
+				<test.hibernate.hbm2ddl.auto>create</test.hibernate.hbm2ddl.auto>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<version>${h2.version}</version>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<!-- start/stop H2 DB as a server -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+							<artifactId>exec-maven-plugin</artifactId>
+							<executions>
+								<execution>
+									<id>start-h2</id>
+									<phase>process-test-classes</phase>
+									<goals>
+										<goal>java</goal>
+									</goals>
+									<configuration>
+										<mainClass>org.h2.tools.Server</mainClass>
+										<arguments>
+											<argument>-tcp</argument>
+											<argument>-tcpDaemon</argument>
+											<argument>-tcpAllowOthers</argument>
+											<!-- argument>-baseDir</argument>
+											<argument>./target/database</argument -->
+										</arguments>
+								</configuration>
+								</execution>
+									<execution>
+										<id>stop-h2</id>
+										<phase>prepare-package</phase>
+										<goals>
+											<goal>java</goal>
+										</goals>
+										<configuration>
+											<mainClass>org.h2.tools.Server</mainClass>
+											<arguments>
+												<argument>-tcpShutdown</argument>
+												<argument>tcp://localhost:9092</argument>
+											</arguments>
+									</configuration>
+									</execution>
+							</executions>
+					</plugin>				
+				</plugins>				
+			</build>
+		</profile>
 		
 		
 		<profile>
