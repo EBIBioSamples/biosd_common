@@ -1,8 +1,11 @@
 1.5.1-SNAPSHOT
   - Snapshot version used for annotations_performance branches
 
+1.4.1-SNAPSHOT
+	- new dev snapshot started
+
 1.4
-  - parameters to define BioSD module versions added
+  - Our Maven modules and their versions added to dependency management
   
 1.3
   - We've started to migrate to the new EBI Nexus Maven repository
