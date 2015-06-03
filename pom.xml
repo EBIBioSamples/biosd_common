@@ -3,7 +3,7 @@
 
   <groupId>uk.ac.ebi.fg.biosd</groupId>
   <artifactId>biosd_common</artifactId>
-  <version>1.4.1-SNAPSHOT</version>
+  <version>1.5.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>BioSD Common Elements</name>
@@ -67,7 +67,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     
-    <biosd.core_model.version>3.0.1-SNAPSHOT</biosd.core_model.version>
+    <biosd.core_model.version>4.0-SNAPSHOT</biosd.core_model.version>
     <biosd.biosd_model.version>3.0.1-SNAPSHOT</biosd.biosd_model.version>
     <biosd.biosd_model_load.version>2.0.1-SNAPSHOT</biosd.biosd_model_load.version>
 	</properties>
