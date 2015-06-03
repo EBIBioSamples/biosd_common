@@ -67,9 +67,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     
-    <biosd.core_model.version>3.0.1-SNAPSHOT</biosd.core_model.version>
-    <biosd.biosd_model.version>3.0.1-SNAPSHOT</biosd.biosd_model.version>
-    <biosd.biosd_model_load.version>2.0.1-SNAPSHOT</biosd.biosd_model_load.version>
+    <biosd.core_model.version>3.0</biosd.core_model.version>
+    <biosd.biosd_model.version>3.0</biosd.biosd_model.version>
+    <biosd.biosd_model_load.version>2.0.1</biosd.biosd_model_load.version>
 	</properties>
 
 
