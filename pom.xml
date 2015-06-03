@@ -67,9 +67,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     
-    <biosd.core_model.version>3.0</biosd.core_model.version>
-    <biosd.biosd_model.version>3.0</biosd.biosd_model.version>
-    <biosd.biosd_model_load.version>2.0.1</biosd.biosd_model_load.version>
 	</properties>
 
 
@@ -109,6 +106,27 @@
 			  <artifactId>jcl-over-slf4j</artifactId>
 			  <version>1.6.6</version>
 			</dependency>		
+	
+	
+			<!-- Our packages -->
+			<dependency>
+				<groupId>uk.ac.ebi.fg</groupId>
+			  <artifactId>core_model</artifactId>
+			  <version>3.0</version>
+			</dependency>
+
+			<dependency>
+			  <groupId>uk.ac.ebi.fg</groupId>
+			  <artifactId>biosd_model</artifactId>
+				<version>3.0</version>
+			</dependency>			
+	
+			<dependency>
+				<groupId>uk.ac.ebi.fg</groupId>
+				<artifactId>biosd_loader</artifactId>
+				<version>2.0.1</version>
+			</dependency>
+			
 	
 			<!-- Sometimes you may want this in the compile scope, not test, and hence it's put here -->		
 		  <dependency>
