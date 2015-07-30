@@ -618,6 +618,31 @@
 			</dependencies>
 		</profile>	
 
+
+		<!-- Sort of personal database, I use for testing significant changes during development -->
+		<profile>
+			<id>test.oracle_brandizi</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<test.jdbc.username>brandizi</test.jdbc.username>
+				<test.jdbc.password>brandizi</test.jdbc.password>
+				<test.jdbc.url>jdbc:oracle:thin:@ora-vm-031.ebi.ac.uk:1531:biosdtst</test.jdbc.url>
+				<test.jdbc.driverClassName>${oracle.jdbc.driverClassName}</test.jdbc.driverClassName>
+				<test.hibernate.dialect>${oracle.hibernate.dialect}</test.hibernate.dialect>
+				<test.hibernate.hbm2ddl.auto></test.hibernate.hbm2ddl.auto>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>${oracle.groupId}</groupId>
+					<artifactId>${oracle.artifactId}</artifactId>
+					<version>${oracle.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
+
 		
 		<profile>
 			<id>oracle_test</id>
@@ -764,6 +789,7 @@
 				</dependency>				
 			</dependencies>
 		</profile>
+
 
 		<!-- Sort of personal database, I use for testing significant changes during development -->
 		<profile>
