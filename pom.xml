@@ -407,6 +407,7 @@
 
 		<profile>
 			<id>test.h2_file</id>
+			<activation><activeByDefault>true</activeByDefault></activation>			
 			<properties>
 				<test.jdbc.username>sa</test.jdbc.username>
 				<test.jdbc.password />
