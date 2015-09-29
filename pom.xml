@@ -1,23 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>uk.ac.ebi.fg.biosd</groupId>
   <artifactId>biosd_common</artifactId>
-  <version>1.5.1-SNAPSHOT</version>
+  <version>2.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>BioSD Common Elements</name>
-  <url>http://www.ebi.ac.uk/biosamples</url>
+  <url>http://github.com/EBIBioSamples/biosd_common</url>
 
-	<description>
+	<description><![CDATA[
 		This is a container of common configuration elements (e.g., databases) and building elements (e.g., logging), which 
 		are used BioSD-related projects (www.ebi.ac.uk/biosamples).
 		
 		If you're creating a new Maven project about BioSD, which has to use these elements, you're strongly recommended 
 		to make it dependent on this POM, via the parent directive (see below).
-	</description>
-
-	<!-- 
+		
+		------ Instructions -------
+		
 	  Make your BioSD project depending on this POM by means of the following in your POM. You don't need to
 	  have our parent POM downloaded in your directory (Maven does it automatically) and we make an effort to 
 	  change the version of this POM as little as possible, so that you won't have to make updates either. 
@@ -27,30 +26,44 @@
 	  (http://marcobrandizi.info/mysite/node/146, dependencies update).
 	  
 	  Of course, your project doesn't need at all to have the same version that we have here for this POM.
-	-->
-	
-	<!-- This goes on the top of your POM
-	<parent>
-	  <groupId>uk.ac.ebi.fg</groupId>
-	  <artifactId>biosd_common</artifactId>
-	  <version>SEE-VERSION-ABOVE</version>
-	</parent> 
-	-->
 
-	<!-- This goes in the repositories section
-		<repository>
-			<id>ebi-repo</id>
-			<name>EBI repo</name>
-			<url>http://www.ebi.ac.uk/~maven/m2repo</url>
-		</repository>
+		1. Declare our BioSD/GitHub repository in your POM: 
 		
 		<repository>
-			<id>ebi-repo-snapshots</id>
-			<name>EBI Repo Snapshots</name>
-			<url>http://www.ebi.ac.uk/~maven/m2repo_snapshots</url>
-			<snapshots><enabled>true</enabled></snapshots>
-		</repository> 
-	-->
+	    <id>EBIBioSamples-GH-repo</id>
+	    <url>https://raw.githubusercontent.com/EBIBioSamples/EBIBioSamples.github.io/maven-repo</url>
+	    <snapshots>
+        <enabled>true</enabled>
+	    </snapshots>
+    </repository>
+			
+		
+		2. Make your POM a parent of ourselves: 
+		
+		<parent>
+		  <groupId>uk.ac.ebi.fg</groupId>
+		  <artifactId>biosd_common</artifactId>
+		  <version>SEE-VERSION-ABOVE</version>
+		</parent> 
+
+
+		Done! Now you should have the stuff we define hereby for you, such as dependency versions, BioSD database profiles
+		used internally at the EBI.
+		
+		
+		
+		--------- Deployment ---------
+		
+		We are parent of our special POM, which is used to deploy stuff on our GitHub repository, so you can deploy 
+		there your project, if this inherits from ourselves. Follow instructions at: 
+		
+		https://github.com/EBIBioSamples/EBIBioSamples.github.io/blob/master/deploy_pom/pom.xml 
+		
+		Note that, once you've successufully setup your project as a child of biosd_commons, you need only the steps 3
+		and 4 from the instructions above (i.e., setting up GH account and OAuth tokens), the deploy_pom is automatically
+		inherited. 
+	]]></description>
+
 
   <properties>
 		<h2.version>1.3.168</h2.version>
@@ -68,6 +81,14 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     
 	</properties>
+
+	<parent>
+	  <groupId>uk.ac.ebi.fg.biosd</groupId>
+	  <artifactId>biosd_deploy</artifactId>
+	  <version>1.0-SNAPSHOT</version>
+	</parent>
+
+
 
 
 	<dependencyManagement>
@@ -201,7 +222,7 @@
 			<dependency>
 				<groupId>uk.ac.ebi</groupId>
 				<artifactId>jutils</artifactId>
-				<version>4.3.1-SNAPSHOT</version>
+				<version>4.4.1-SNAPSHOT</version>
 			</dependency>
 		
 			<dependency>
@@ -244,39 +265,15 @@
 	</dependencyManagement>  
 
 
-  
-  <distributionManagement>
-
-	  <repository>
-		  <id>ebi-repo-old</id>
-		  <name>EBI Repository</name>
-		  <url>sftp://ebi-001.ebi.ac.uk/homes/maven/public_html/m2repo</url>
-	  </repository>
-		
-	  <snapshotRepository>
-		  <uniqueVersion>false</uniqueVersion>
-		  <id>ebi-repo-old-snapshots</id>
-		  <name>EBI Snapshots Repository</name>
-		  <url>sftp://ebi-001.ebi.ac.uk/homes/maven/public_html/m2repo_snapshots</url>
-	  </snapshotRepository>
-		
-  </distributionManagement>	
-
-
 	<repositories>
 
 		<repository>
-			<id>ebi-repo-nexus</id>
-			<name>EBI repo</name>
-			<url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-repo</url>
-		</repository>
-
-		<repository>
-			<id>ebi-repo-nexus-snapshots</id>
-			<name>EBI repo</name>
-			<url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-snapshots</url>
-		  <snapshots><enabled>true</enabled></snapshots>
-		</repository>
+	    <id>EBIBioSamples-GH-repo</id>
+	    <url>https://raw.githubusercontent.com/EBIBioSamples/EBIBioSamples.github.io/maven-repo</url>
+	    <snapshots>
+        <enabled>true</enabled>
+	    </snapshots>
+    </repository>
 
 	  <repository>
 		  <id>ebi-repo-old</id>
@@ -411,7 +408,7 @@
 			<properties>
 				<test.jdbc.username>sa</test.jdbc.username>
 				<test.jdbc.password />
-				<test.jdbc.url>jdbc:h2:target/database/testdb;MVCC=true</test.jdbc.url>
+				<test.jdbc.url>jdbc:h2:./target/database/testdb;MVCC=true</test.jdbc.url>
 				<test.jdbc.driverClassName>org.h2.Driver</test.jdbc.driverClassName>
 				<test.hibernate.dialect>org.hibernate.dialect.H2Dialect</test.hibernate.dialect>
 				<test.hibernate.hbm2ddl.auto>create</test.hibernate.hbm2ddl.auto>
@@ -492,7 +489,7 @@
 			<properties>
 				<jdbc.username>sa</jdbc.username>
 				<jdbc.password />
-				<jdbc.url>jdbc:h2:database/testdb</jdbc.url>
+				<jdbc.url>jdbc:h2:./database/testdb</jdbc.url>
 				<!-- You need java -cp h2*.jar org.h2.tools.Server for this (-? for options) 
 				<jdbc.url>jdbc:h2:tcp://localhost/~/testdb</jdbc.url -->
 				<jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
