@@ -1,5 +1,6 @@
-1.5.1-SNAPSHOT
+2.0-SNAPSHOT
   - Snapshot version used for annotations_performance branches
+  - deploy_pom added
 
 1.4.1-SNAPSHOT
 	- new dev snapshot started
