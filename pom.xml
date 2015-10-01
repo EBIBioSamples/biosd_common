@@ -41,7 +41,7 @@
 		2. Make your POM a parent of ourselves: 
 		
 		<parent>
-		  <groupId>uk.ac.ebi.fg</groupId>
+	  	<groupId>uk.ac.ebi.fg.biosd</groupId>
 		  <artifactId>biosd_common</artifactId>
 		  <version>SEE-VERSION-ABOVE</version>
 		</parent> 
