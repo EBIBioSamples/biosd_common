@@ -76,6 +76,8 @@
 		<oracle.jdbc.driverClassName>oracle.jdbc.driver.OracleDriver</oracle.jdbc.driverClassName>
 		<oracle.hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</oracle.hibernate.dialect>
 		<spring.version>4.0.5.RELEASE</spring.version>
+		<hibernate.core-em.version>4.3.11.Final</hibernate.core-em.version>
+		<hibernate.validator.version>5.1.3.Final</hibernate.validator.version>
 		
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -157,27 +159,27 @@
 		  </dependency>
 		
 			<dependency>
-			   <groupId>com.google.guava</groupId>
-			   <artifactId>guava</artifactId>
-			   <version>18.0</version>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>18.0</version>
 			</dependency>
 	
 			<dependency>
 		  	<groupId>org.hibernate</groupId>
 		  	<artifactId>hibernate-core</artifactId>
-				<version>4.3.6.Final</version>
+				<version>${hibernate.core-em.version}</version>
 			</dependency>
 
 			<dependency>
-			   <groupId>org.hibernate</groupId>
-			   <artifactId>hibernate-entitymanager</artifactId>
-				 <version>4.3.6.Final</version>
+			  <groupId>org.hibernate</groupId>
+			  <artifactId>hibernate-entitymanager</artifactId>
+				<version>${hibernate.core-em.version}</version>
 			</dependency>
 			
 			<dependency>
-			   <groupId>org.hibernate</groupId>
-			   <artifactId>hibernate-validator</artifactId>
-    		 <version>5.1.2.Final</version>
+			  <groupId>org.hibernate</groupId>
+			  <artifactId>hibernate-validator</artifactId>
+				<version>${hibernate.validator.version}</version>
     	</dependency>
 					
 			<!-- WARNING: I can't remeber a single case where this works, rather than screwing you with horrible 
@@ -185,7 +187,7 @@
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-c3p0</artifactId>
-				<version>4.3.6.Final</version>
+				<version>4.3.11.Final</version>
     	</dependency>
 					
 			<!-- Try to avoid to use this, lang3 is better  -->			
