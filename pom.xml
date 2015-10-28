@@ -10,7 +10,7 @@
 
 	<description><![CDATA[
 		This is a container of common configuration elements (e.g., databases) and building elements (e.g., logging), which 
-		are used BioSD-related projects (www.ebi.ac.uk/biosamples).
+		are used by BioSD-related projects (www.ebi.ac.uk/biosamples).
 		
 		If you're creating a new Maven project about BioSD, which has to use these elements, you're strongly recommended 
 		to make it dependent on this POM, via the parent directive (see below).
@@ -59,7 +59,7 @@
 		
 		https://github.com/EBIBioSamples/EBIBioSamples.github.io/blob/master/deploy_pom/pom.xml 
 		
-		Note that, once you've successufully setup your project as a child of biosd_commons, you need only the steps 3
+		Note that, once you've successufully setup your project as a child of biosd_common, you need only the steps 3
 		and 4 from the instructions above (i.e., setting up GH account and OAuth tokens), the deploy_pom is automatically
 		inherited. 
 	]]></description>
