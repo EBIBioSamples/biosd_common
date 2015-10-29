@@ -1,9 +1,8 @@
-2.0-SNAPSHOT
-  - Snapshot version used for annotations_performance branches
+2.0.1-SNAPSHOT
+  - Next dev version
+  
+2.0
   - deploy_pom added
-
-1.4.1-SNAPSHOT
-	- new dev snapshot started
 
 1.4
   - Our Maven modules and their versions added to dependency management
