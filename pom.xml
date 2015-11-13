@@ -315,6 +315,9 @@
 
 	<build>
 	
+		<!-- 
+			We filter */resources by default, override it in your POM in case you need something different 
+		-->
     <testResources>
 	    <testResource>
 	      <directory>src/test/resources</directory>
