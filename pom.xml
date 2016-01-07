@@ -149,6 +149,11 @@
 				<version>3.0.1-SNAPSHOT</version>
 			</dependency>
 			
+			<dependency>
+				<groupId>${project.groupId}</groupId>			
+				<artifactId>biosd_feature_annotator</artifactId>
+				<version>1.0.1-SNAPSHOT</version>
+			</dependency>			
 	
 			<!-- Sometimes you may want this in the compile scope, not test, and hence it's put here -->		
 		  <dependency>
