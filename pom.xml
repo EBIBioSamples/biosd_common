@@ -855,6 +855,61 @@
 				</dependency>
 			</dependencies>
 		</profile>
+
+
+		<!-- .............. Just ignore myeq profiles if you don't use myequivalents ................. -->
+		
+		<!-- 
+			The test instance of myEquivalents X-references for BioSD. 
+			This usually points at an empty database, so it actually disables myEq.
+			
+			This profiles can fill a template like https://github.com/EBIBioSamples/myequivalents/blob/master/myequivalents-cmdline/src/test/resources/myeq-manager-config.xml 
+		-->
+  	<profile>
+  		<id>myeq.test.h2</id>
+  		<activation><activeByDefault>true</activeByDefault></activation>
+  		<properties>
+				<myeq.test.jdbc.username>sa</myeq.test.jdbc.username>
+				<myeq.test.jdbc.password />
+				<myeq.test.jdbc.url>jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE</myeq.test.jdbc.url>
+				<myeq.test.jdbc.driverClassName>org.h2.Driver</myeq.test.jdbc.driverClassName>
+				<myeq.test.hibernate.dialect>org.hibernate.dialect.H2Dialect</myeq.test.hibernate.dialect>
+				<myeq.test.hibernate.hbm2ddl.auto>update</myeq.test.hibernate.hbm2ddl.auto> 
+  		</properties>
+  		<dependencies>
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<version>${h2.version}</version>
+				</dependency>
+  		</dependencies>
+  	</profile>
+  	
+		<!-- 
+		  The Production instance of myEquivalents X-references for BioSD 
+		  These placeholders will fill a file like https://github.com/EBIBioSamples/myequivalents/blob/master/myequivalents-cmdline/src/main/assembly/resources/myeq-manager-config.xml
+		  which you need to have in your project, together with the myequivalents dependency.
+		-->
+  	<profile>
+  		<id>myeq.prod</id>
+  		<activation><activeByDefault>false</activeByDefault></activation>
+  		<properties>
+				<myeq.jdbc.username>myeq</myeq.jdbc.username>
+				<myeq.jdbc.password>my3qp4o</myeq.jdbc.password>
+				<myeq.jdbc.url>jdbc:oracle:thin:@ora-vm-023.ebi.ac.uk:1531:biosdpro</myeq.jdbc.url>
+				<myeq.jdbc.driverClassName>${oracle.jdbc.driverClassName}</myeq.jdbc.driverClassName>
+				<myeq.hibernate.dialect>${oracle.hibernate.dialect}</myeq.hibernate.dialect>
+				<myeq.hibernate.hbm2ddl.auto /> 
+  		</properties>
+  		<dependencies>
+				<dependency>
+					<groupId>${oracle.groupId}</groupId>
+					<artifactId>${oracle.artifactId}</artifactId>
+					<version>${oracle.version}</version>
+				</dependency>
+  		</dependencies>
+  	</profile>   	
+		
 		
 	</profiles>    
 
