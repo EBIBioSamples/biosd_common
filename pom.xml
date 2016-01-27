@@ -403,7 +403,7 @@
 		<!-- 
 	    The test.* profiles set up properties like test.*, these are used in test configuration files, (e.g.,
 	    src/test/resources/hibernate.properties). These is done to allow you to define similar files in your Maven project, 
-	    but without the test.* prefix. In other word, you can play with profiles and keep separated certain properties 
+	    but without the test.* prefix. In other words, you can play with profiles and keep separated certain properties 
 	    depending on a real environment (e.g., production, staging) from test properties like the ones defined here.
 	    
 	    See our documentation (https://github.com/EBIBioSamples/myequivalents/wiki/Building-the-MyEquivalents-Software, 
@@ -869,7 +869,8 @@
 			The test instance of myEquivalents X-references for BioSD. 
 			This usually points at an empty database, so it actually disables myEq.
 			
-			This profiles can fill a template like https://github.com/EBIBioSamples/myequivalents/blob/master/myequivalents-cmdline/src/test/resources/myeq-manager-config.xml 
+			This profiles can fill a template like: 
+			https://github.com/EBIBioSamples/biosd2rdf/blob/master/src/main/assembly/resources/myeq-manager-config.xml 
 		-->
   	<profile>
   		<id>myeq.test.h2</id>
